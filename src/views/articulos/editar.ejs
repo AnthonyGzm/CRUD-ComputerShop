@@ -1,0 +1,81 @@
+<h2 class="text-3xl font-bold text-slate-800 mb-6">Editar artículo</h2>
+
+<section class="max-w-xl bg-white rounded-lg shadow p-6">
+
+  <form action="/articulos/<%= articulo._id %>"
+        method="POST"
+        enctype="multipart/form-data"
+        class="space-y-4">
+
+    <!-- Código -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Código</label>
+      <input type="text" name="codigo" value="<%= articulo.codigo %>" required
+             class="w-full border rounded px-3 py-2">
+    </div>
+
+    <!-- Nombre -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Nombre</label>
+      <input type="text" name="nombre" value="<%= articulo.nombre %>" required
+             class="w-full border rounded px-3 py-2">
+    </div>
+
+    <!-- Descripción -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Descripción</label>
+      <textarea name="descripcion" rows="3"
+                class="w-full border rounded px-3 py-2"><%= articulo.descripcion %></textarea>
+    </div>
+
+    <!-- Cantidad y precio -->
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1">Cantidad</label>
+        <input type="number" name="cantidad"
+               value="<%= articulo.cantidad %>" required
+               class="w-full border rounded px-3 py-2">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-1">Precio</label>
+        <input type="number" name="precio" step="0.01"
+               value="<%= articulo.precio %>" required
+               class="w-full border rounded px-3 py-2">
+      </div>
+    </div>
+
+    <!-- Foto actual -->
+    <% if (articulo.imagen) { %>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Foto actual</label>
+        <img src="<%= articulo.imagen %>" class="h-32 rounded shadow border mt-2">
+      </div>
+    <% } %>
+
+    <!-- Subir nueva foto -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Cambiar foto</label>
+
+      <!-- 🔥 Coincide con upload.single("foto") -->
+      <input type="file" 
+             name="foto"
+             accept=".jpg,.jpeg,.png"
+             class="w-full border rounded px-3 py-2 bg-white">
+    </div>
+
+    <!-- Botones -->
+    <div class="flex justify-end space-x-2">
+      <a href="/articulos"
+         class="px-4 py-2 text-sm rounded border border-slate-300 text-slate-700">
+        Cancelar
+      </a>
+
+      <button type="submit"
+              class="px-4 py-2 text-sm rounded bg-sky-600 text-white hover:bg-sky-700">
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+
+</section>

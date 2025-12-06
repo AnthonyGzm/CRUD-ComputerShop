@@ -1,0 +1,63 @@
+<h2 class="text-3xl font-bold text-slate-800 mb-6">
+  Inventario de artículos
+</h2>
+
+<div class="grid gap-6 md:grid-cols-3">
+
+  <% articulos.forEach(articulo => { %>
+
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+
+    <% if (articulo.imagen) { %>
+      <img src="<%= articulo.imagen %>"
+           alt="<%= articulo.nombre %>"
+           class="w-full h-40 object-cover rounded mb-3">
+    <% } %>
+
+    <h3 class="font-bold text-lg text-slate-900"><%= articulo.nombre %></h3>
+
+    <p class="text-sm text-slate-500">Código: <%= articulo.codigo %></p>
+    <p class="text-sm text-slate-500 mb-3"><%= articulo.descripcion %></p>
+
+    <p><strong>Cantidad:</strong> <%= articulo.cantidad %></p>
+    <p class="mb-4"><strong>Precio:</strong> $<%= articulo.precio %></p>
+
+    <!-- Botones -->
+    <div class="flex justify-between items-center pt-3 border-t">
+
+      <!-- Editar -->
+      <a href="/articulos/<%= articulo._id %>/editar"
+         class="flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+             class="h-5 w-5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M16.862 3.487a2.1 2.1 0 01 2.97 2.97L9.75 16.54 6 17.25l.71-3.75L16.862 3.487z" />
+        </svg>
+
+        Editar
+      </a>
+
+      <!-- Eliminar -->
+      <form action="/articulos/<%= articulo._id %>/eliminar" method="POST"
+            onsubmit="return confirm('¿Seguro que deseas eliminar este artículo?');">
+
+        <button class="flex items-center gap-1 text-red-600 hover:text-red-800 font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+               class="h-5 w-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6 7h12m-1 0v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7m3 0V5a2 2 0 012-2h2a2 2 0 012 2v2" />
+          </svg>
+          Eliminar
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <% }) %>
+
+</div>

@@ -1,0 +1,75 @@
+<h2 class="text-3xl font-bold text-slate-800 mb-6">Registrar nuevo artículo</h2>
+
+<section class="max-w-xl bg-white rounded-lg shadow p-6">
+
+  <form action="/articulos" 
+        method="POST"
+        enctype="multipart/form-data"
+        class="space-y-4">
+
+    <!-- Código -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Código</label>
+      <input type="text" name="codigo" required
+             class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-sky-300">
+    </div>
+
+    <!-- Nombre -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Nombre del artículo</label>
+      <input type="text" name="nombre" required
+             class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-sky-300">
+    </div>
+
+    <!-- Descripción -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Descripción</label>
+      <textarea name="descripcion" rows="3" required
+                class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-sky-300"></textarea>
+    </div>
+
+    <!-- Cantidad y Precio -->
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1">Cantidad en almacén</label>
+        <input type="number" name="cantidad" min="0" required
+               class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-sky-300">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Precio</label>
+        <input type="number" name="precio" step="0.01" min="0" required
+               class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-sky-300">
+      </div>
+    </div>
+
+    <!-- FOTO -->
+    <div>
+      <label class="block text-sm font-semibold mb-1">Foto del artículo</label>
+
+      <!-- 🔥 ESTE NOMBRE *DEBE COINCIDIR* CON upload.single("foto") -->
+      <input type="file" 
+             name="foto" 
+             accept=".jpg,.jpeg,.png"
+             required
+             class="w-full border rounded px-3 py-2 bg-white">
+
+      <p class="text-xs text-slate-500 mt-1">
+        Formatos permitidos: JPG, JPEG, PNG.
+      </p>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex justify-end space-x-2">
+      <a href="/articulos"
+         class="px-4 py-2 text-sm rounded border border-slate-300 text-slate-700">
+        Cancelar
+      </a>
+
+      <button type="submit"
+              class="px-4 py-2 text-sm rounded bg-sky-600 text-white hover:bg-sky-700">
+        Guardar
+      </button>
+    </div>
+
+  </form>
+</section>
